@@ -1,0 +1,13 @@
+﻿﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-action="Index">
+    <label>Your name:</label>
+    <input type="text" name="FullName">
+    <label>Her name:</label>
+    <input type="text" name="Address">
+    <input type="submit" value="Gửi dữ liệu">
+</form>
+
+<h1>@ViewBag.Message</h1>
