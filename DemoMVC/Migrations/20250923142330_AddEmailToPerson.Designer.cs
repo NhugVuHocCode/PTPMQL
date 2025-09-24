@@ -2,6 +2,7 @@
 using DemoMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,31 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoMVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250923142330_AddEmailToPerson")]
+    partial class AddEmailToPerson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
-
-            modelBuilder.Entity("DemoMVC.Models.Employee", b =>
-                {
-                    b.Property<int>("EmployeeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Age")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("EmployeeId");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Employee");
-                });
 
             modelBuilder.Entity("DemoMVC.Models.Person", b =>
                 {
@@ -62,17 +46,6 @@ namespace DemoMVC.Migrations
                     b.HasKey("PersonId");
 
                     b.ToTable("Person");
-                });
-
-            modelBuilder.Entity("DemoMVC.Models.Employee", b =>
-                {
-                    b.HasOne("DemoMVC.Models.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
                 });
 #pragma warning restore 612, 618
         }
